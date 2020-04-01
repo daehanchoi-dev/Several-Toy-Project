@@ -46,12 +46,12 @@ model.compile(loss='binary_crossentropy',
 # Data augmentaion for increasing accuracy
 
 train_datagen = ImageDataGenerator(
-    rescale=1./255,
-    shear_range=0.2,
-    zoom_range=0.2,
     rotation_range=40,
     width_shift_range=0.2,
     height_shift_range=0.2,
+    rescale=1./255,
+    shear_range=0.2,
+    zoom_range=0.2,
     horizontal_flip=True,
     fill_mode='nearest'
 )
@@ -62,22 +62,19 @@ train_generator = train_datagen.flow_from_directory(
     train_data_dir,
     target_size=(img_width, img_height),
     batch_size=batch_size,
-    class_mode='binary'
-)
+    class_mode='binary')
 
 validation_generator = test_datagen.flow_from_directory(
     validation_data_dir,
     target_size=(img_width, img_height),
     batch_size=batch_size,
-    class_mode='binary'
-)
+    class_mode='binary')
 
 model.fit_generator(
     train_generator,
     steps_per_epoch=train_samples // batch_size,
     epochs= epochs,
     validation_data = validation_generator,
-    validation_steps= validation_samples // batch_size
-)
+    validation_steps= validation_samples // batch_size)
 
 model.save_weights('Cats_and_Dogs_Classification.h5')
