@@ -14,7 +14,7 @@ validation_samples = 800
 epochs = 50
 batch_size = 16
 
-if b.image_data_format() == 'Cat_Dog_Classification':
+if b.image_data_format() == 'channels_first':
     input_shape = (3, img_width, img_height)
 else:
     input_shape = (img_width, img_height, 3)
