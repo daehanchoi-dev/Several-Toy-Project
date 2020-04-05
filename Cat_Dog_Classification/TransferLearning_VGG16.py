@@ -29,7 +29,7 @@ def BottleNeck_feature():
         batch_size = batch_size,
         class_mode='None',
         shuffle=False)
-    feature_train = model.predict_train_generator(
+    feature_train = model.predict_generator(
         train_generator, train_samples // batch_size)
     np.save(open('feature_train.npy', 'wb'),
             feature_train)
@@ -40,7 +40,7 @@ def BottleNeck_feature():
         batch_size= batch_size,
         class_mode='None',
         shuffle=False)
-    feature_validation = model.predict_validation_generator(
+    feature_validation = model.predict_generator(
         validation_generator, validation_samples // batch_size)
     np.save(open('feature_validation.npy', 'wb'),
             feature_validation)
